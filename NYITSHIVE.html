@@ -4,7 +4,7 @@
 <title>Hive Plots</title>
 <style>
 
-@import url(../style.css?20120427);
+@import url(h1.css);
 
 .axis {
   stroke: #000;
@@ -37,14 +37,17 @@
 
 <header>
   <aside>March 18, 2012</aside>
-  <a href="../" rel="author">Mike Bostock</a>
+  <a href="../" rel="author">Author:Dan Corda</a>
+  <a href="../" rel="example-design">Page Template Design Mike Bostock</a>
 </header>
 
 <h1>Hive Plots</h1>
 
-<aside>This <b>hive plot</b>, a type of node-link diagram, shows the dependency graph of the Flare visualization toolkit.
+<aside>This <b>hive plot</b>, a type of node-link diagram, shows the dependency graph of the NYITS Policies
 
-<p>Each dot represents a class, and each line represents an import statement from one class to another. Related classes share the same color.
+<p> The colorful circles you see indicate a piece of Document. The connecting lines between each circle represent a link between documents. Document found on the same page share the same color
+The data is structured in three groups with one of the three groups mirror on itself to show internal relationships. These groups are broken down as follows: Documents exisiting with only outgoing links; Documents exisiting with incoming links, and document that exhibit both outgoing and incomign links. The last of these categories is the group that is mirrored to show both outgoing and in coming relationships. 
+
 
 <p>Mouseover for more details, and scroll down to read more about the use of hive plots to visualize networks.
 
@@ -70,12 +73,12 @@
 
 <footer>
   <aside>March 18, 2012</aside>
-  <a href="../" rel="author">Mike Bostock</a>
+  <a href="../" rel="author">Dan Corda</a>
 </footer>
 
 <script src="http://d3js.org/d3.v2.js?2.8.1"></script>
 <script>
-
+// create chart size and inner and outer radius. In the future attempt dynamic sizing algorithm
 var width = 960,
     height = 850,
     innerRadius = 40,
@@ -99,7 +102,22 @@ var svg = d3.select("#chart").append("svg")
     .attr("transform", "translate(" + outerRadius * .20 + "," + outerRadius * .57 + ")");
 
 // Load the data and display the plot!
-d3.json("flare-imports.json", function(nodes) {
+
+ 
+var parsed = d3.csv("./ITS Policy Analysis - Sheet3.csv")  
+    .row(function(d) { return {key: d.key, value: +d.value}; })
+    .get(function(error, rows) { console.log(rows); });
+var nest = d3.nest()
+    .key(function(d) { return d.subgroup; })
+    .key(function(d) { return d.division; })
+    .key(function(d) { return d.product; })
+    .entries(parsed);
+
+
+
+
+
+d3.json(nest, function(nodes) {
   var nodesByName = {},
       links = [],
       formatNumber = d3.format(",d"),
