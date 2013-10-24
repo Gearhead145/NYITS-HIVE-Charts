@@ -76,7 +76,7 @@ The data is structured in three groups with one of the three groups mirror on it
   <a href="../" rel="author">Dan Corda</a>
 </footer>
 
-<script src="http://d3js.org/d3.v2.js?2.8.1"></script>
+<script src="http://d3js.org/d3.v3.min.js"></script>
 <script>
 // create chart size and inner and outer radius. In the future attempt dynamic sizing algorithm
 var width = 960,
@@ -123,7 +123,7 @@ d3.json(nest, function(nodes) {
       formatNumber = d3.format(",d"),
       defaultInfo;
 
-  // Construct an index by node name.
+  
   nodes.forEach(function(d) {
     d.connectors = [];
     d.packageName = d.name.split(".")[1];
@@ -131,6 +131,7 @@ d3.json(nest, function(nodes) {
   });
 
   // Convert the import lists into links with sources and targets.
+
   nodes.forEach(function(source) {
     source.imports.forEach(function(targetName) {
       var target = nodesByName[targetName];
