@@ -104,7 +104,7 @@ var svg = d3.select("#chart").append("svg")
 // Load the data and display the plot!
 
  
-var parsed = d3.csv("https://www.dropbox.com/s/vrdv7h1iubx7iws/ITS%20Policy%20Analysis%20-%20Sheet3.csv")
+var parsed = d3.csv("http://www1.datafilehost.com/d/93c29b5a")
     .row(function(d) { return {key: d.key, value: +d.value}; })
     .get(function(error, rows) { console.log(rows); });
 var nest = d3.nest()
