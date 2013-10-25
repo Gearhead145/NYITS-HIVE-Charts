@@ -124,7 +124,7 @@ d3.json(nest, function(nodes) {
       defaultInfo;
 
   
-  nodes.forEach(function(d) {
+  node.forEach(function(d) {
     d.connectors = [];
     d.packageName = d.name.split(".")[1];
     nodesByName[d.name] = d;
