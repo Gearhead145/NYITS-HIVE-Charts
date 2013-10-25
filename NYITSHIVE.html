@@ -113,11 +113,8 @@ var nest = d3.nest()
     .key(function(d) { return d.product; })
     .entries(parsed);
 
+console.log(nest);
 
-
-
- 
-d3.json(nest, function(nodes) {
   var nodesByName = {},
       links = [],
       formatNumber = d3.format(",d"),
@@ -246,7 +243,7 @@ d3.json(nest, function(nodes) {
     svg.selectAll(".active").classed("active", false);
     info.text(defaultInfo);
   }
-});
+
 
 // A shape generator for Hive links, based on a source and a target.
 // The source and target are defined in polar coordinates (angle and radius).
